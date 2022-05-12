@@ -2,9 +2,11 @@
 
 namespace App\Domain\Cities\Entities;
 
+use App\Domain\Groups\Entities\Groups;
 use Database\Factories\CityFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Cities extends Model
 {
@@ -17,6 +19,7 @@ class Cities extends Model
     protected $fillable = [
         'id',
         'name',
+        'group_id',
         'created_at',
         'updated_at',
     ];
@@ -25,6 +28,11 @@ class Cities extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(Groups::class);
+    }
 
     protected static function newFactory()
     {

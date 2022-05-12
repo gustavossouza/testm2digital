@@ -2,9 +2,11 @@
 
 namespace App\Domain\Groups\Entities;
 
+use App\Domain\Campaigns\Entities\Campaigns;
 use Database\Factories\GroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Groups extends Model
 {
@@ -17,6 +19,7 @@ class Groups extends Model
     protected $fillable = [
         'id',
         'name',
+        'campaign_id',
         'created_at',
         'updated_at',
     ];
@@ -25,6 +28,11 @@ class Groups extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function campaign(): BelongsTo
+    {
+        return $this->belongsTo(Campaigns::class);
+    }
 
     protected static function newFactory()
     {

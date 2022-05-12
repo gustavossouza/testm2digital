@@ -16,7 +16,8 @@ class GroupsService
 
     public function get(): Collection
     {
-        return $this->entities->all();
+        return $this->entities->with('campaign')
+            ->get();
     }
 
     public function create(array $request): Groups

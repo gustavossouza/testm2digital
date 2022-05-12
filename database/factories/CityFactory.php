@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Domain\Cities\Entities\Cities;
+use App\Domain\Groups\Entities\Groups;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->city()
+            'name' => $this->faker->city(),
+            'group_id' => Groups::inRandomOrder()->first()
         ];
     }
 }

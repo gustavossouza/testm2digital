@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Domain\Campaigns\Entities\Campaigns;
 use App\Domain\Groups\Entities\Groups;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,8 @@ class GroupFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name
+            'name' => $this->faker->name,
+            'campaign_id' => Campaigns::inRandomOrder()->first()
         ];
     }
 }

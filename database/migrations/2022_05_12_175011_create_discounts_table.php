@@ -15,8 +15,13 @@ return new class extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_id');
+            $table->integer('campaign_id');
             $table->float('price');
             $table->timestamps();
+
+            $table->foreign('campaign_id')->references("id")->on('campaigns');
+            $table->foreign('product_id')->references("id")->on('products');
         });
     }
 
