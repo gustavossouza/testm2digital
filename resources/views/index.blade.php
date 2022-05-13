@@ -9,6 +9,7 @@
     <link href="plugins/angular-material/angular-material.min.css" rel="stylesheet" />
     <!--CSS-->
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/amaran.min.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/nga.all.min.css" rel="stylesheet" />
@@ -44,6 +45,7 @@
     <script src="js/angular-flash.js"></script>
     <script src="js/angular-sanitize.js"></script>
     <script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="js/jquery.amaran.min.js"></script>
 
     <!--Common-->
 

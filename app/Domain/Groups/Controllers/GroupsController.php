@@ -28,6 +28,15 @@ class GroupsController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required',
+                'campaign_id' => 'required|exists:campaigns,id',
+            ], [
+                'name.required' => 'Campo Nome é obrigatório',
+                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
+                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+            ]);
+
             $this->service->create($request->all());
             return response()->json(['data' => "Cadastrado com sucesso!"], Response::HTTP_OK);
         
@@ -39,6 +48,16 @@ class GroupsController extends Controller
     public function update(Groups $group, Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required',
+                'campaign_id' => 'required|exists:campaigns,id',
+            ], [
+                'name.required' => 'Campo Nome é obrigatório',
+                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
+                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+            ]);
+
+
             $this->service->update($group, $request->all());
             return response()->json(['data' => "Atualizado com sucesso!"], Response::HTTP_OK);
         

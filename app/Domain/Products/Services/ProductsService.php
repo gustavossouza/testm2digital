@@ -16,30 +16,30 @@ class ProductsService
 
     public function get(): Collection
     {
-        return $this->entities->all();
+        return $this->entities->orderBy('id', 'desc')->get();
     }
 
     public function create(array $request): Products
     {
-        $city = $this->entities;
-        $city->fill($request);
-        $city->save();
+        $product = $this->entities;
+        $product->fill($request);
+        $product->save();
 
-        return $city;
+        return $product;
     }
 
-    public function update(Products $city, array $request): Products
+    public function update(Products $product, array $request): Products
     {
-        $city->fill($request);
-        $city->update();
+        $product->fill($request);
+        $product->update();
 
-        return $city;
+        return $product;
     }
 
-    public function delete(Products $city): Products
+    public function delete(Products $product): Products
     {
-        $city->delete();
+        $product->delete();
         
-        return $city;
+        return $product;
     }
 }

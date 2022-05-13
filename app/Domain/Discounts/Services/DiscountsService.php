@@ -17,6 +17,7 @@ class DiscountsService
     public function get(): Collection
     {
         return $this->entities->with('campaign','product')
+            ->orderBy('id', 'desc')
             ->get();
     }
 

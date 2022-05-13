@@ -18,7 +18,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
         $http.get(apiBase + module, { params: parameter }, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
             deferred.resolve(response);
         }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
+            deferred.reject(data);
         });
 
         return deferred.promise;
@@ -35,7 +35,7 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             deferred.resolve(response);
 
         }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
+            deferred.reject(data);
         });
 
         return deferred.promise;
@@ -49,12 +49,12 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
 
         var deferred = $q.defer();
 
-        $http.post(apiBase + module + '/' + parameter.id, parameter, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+        $http.put(apiBase + module + '/' + parameter.id, parameter, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
 
             deferred.resolve(response);
 
         }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
+            deferred.reject(data);
         });
 
         return deferred.promise;
@@ -72,20 +72,33 @@ app.service('apiService', ['$http', '$q', 'appSettings', function ($http, $q, ap
             deferred.resolve(response);
 
         }).catch(function (data, status, headers, config) { // <--- catch instead error
-            deferred.reject(data.statusText);
+            deferred.reject(data);
         });
 
         return deferred.promise;
     };
 
+    var destroy = function (module, parameter) {
+        console.log("hitting Service=============");
 
+        var deferred = $q.defer();
 
+        $http.delete(apiBase + module + '/' + parameter.id, parameter, { headers: { 'Content-Type': 'application/json' } }).success(function (response) {
+
+            deferred.resolve(response);
+
+        }).catch(function (data, status, headers, config) { // <--- catch instead error
+            deferred.reject(data);
+        });
+
+        return deferred.promise;
+    };
 
     apiService.get = get;
-
     apiService.create = create;
     apiService.update = update;
     apiService.delet = delet;
+    apiService.destroy = destroy;
 
     return apiService;
 

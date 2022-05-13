@@ -2,6 +2,7 @@
 
 namespace App\Domain\Discounts\Entities;
 
+use App\Domain\Campaigns\Entities\Campaigns;
 use App\Domain\Products\Entities\Products;
 use Database\Factories\DiscountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,7 +21,7 @@ class Discounts extends Model
         'id',
         'product_id',
         'campaign_id',
-        'discount',
+        'price',
         'created_at',
         'updated_at',
     ];
@@ -37,7 +38,7 @@ class Discounts extends Model
 
     public function campaign(): BelongsTo
     {
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Campaigns::class);
     }
 
     protected static function newFactory()

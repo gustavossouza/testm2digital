@@ -28,6 +28,20 @@ class DiscountsController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'campaign_id' => 'required|exists:campaigns,id',
+                'product_id' => 'required|exists:products,id',
+                'price' => 'required|numeric'
+            ], [
+                'price.required' => 'Campo Preço é obrigatório',
+                'price.numeric' => 'Campo Preço é valor monetário',
+                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
+                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+                'product_id.required' => "Selecionar o Produto é obrigatório",
+                'product_id.exists' => "Produto não existe em nosso banco dados",
+            ]);
+
+
             $this->service->create($request->all());
             return response()->json(['data' => "Cadastrado com sucesso!"], Response::HTTP_OK);
         
@@ -36,10 +50,23 @@ class DiscountsController extends Controller
         }
     }
 
-    public function update(Discounts $city, Request $request): JsonResponse
+    public function update(Discounts $discount, Request $request): JsonResponse
     {
         try {
-            $this->service->update($city, $request->all());
+            $request->validate([
+                'campaign_id' => 'required|exists:campaigns,id',
+                'product_id' => 'required|exists:products,id',
+                'price' => 'required|numeric'
+            ], [
+                'price.required' => 'Campo Preço é obrigatório',
+                'price.numeric' => 'Campo Preço é valor monetário',
+                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
+                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+                'product_id.required' => "Selecionar o Produto é obrigatório",
+                'product_id.exists' => "Produto não existe em nosso banco dados",
+            ]);
+
+            $this->service->update($discount, $request->all());
             return response()->json(['data' => "Atualizado com sucesso!"], Response::HTTP_OK);
         
         } catch (\Exception $e) {
@@ -47,10 +74,10 @@ class DiscountsController extends Controller
         }
     }
 
-    public function destroy(Discounts $city): JsonResponse
+    public function destroy(Discounts $discount): JsonResponse
     {
         try {
-            $this->service->delete($city);
+            $this->service->delete($discount);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         
         } catch (\Exception $e) {

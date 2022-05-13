@@ -43,9 +43,9 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     };
 
-    var getCampanhas = function () {
+    var getRegister = function (type) {
         var deferred = $q.defer();
-        apiService.get("campaigns").then(function (response) {
+        apiService.get(type).then(function (response) {
             if (response)
                 deferred.resolve(response);
             else
@@ -57,9 +57,9 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     }
 
-    var getCidades = function () {
+    var deleteRegister = function(type, parameter) {
         var deferred = $q.defer();
-        apiService.get("cities").then(function (response) {
+        apiService.destroy(type, parameter).then(function (response) {
             if (response)
                 deferred.resolve(response);
             else
@@ -71,9 +71,9 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     }
 
-    var getDescontos = function () {
+    var storeRegister = function(type, parameter) {
         var deferred = $q.defer();
-        apiService.get("discounts").then(function (response) {
+        apiService.create(type, parameter).then(function (response) {
             if (response)
                 deferred.resolve(response);
             else
@@ -85,23 +85,9 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     }
 
-    var getGrupos = function () {
+    var updateRegister = function(type, parameter) {
         var deferred = $q.defer();
-        apiService.get("groups").then(function (response) {
-            if (response)
-                deferred.resolve(response);
-            else
-                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
-        },
-            function (response) {
-                deferred.reject(response);
-            });
-        return deferred.promise;
-    }
-
-    var getProdutos = function () {
-        var deferred = $q.defer();
-        apiService.get("products").then(function (response) {
+        apiService.update(type, parameter).then(function (response) {
             if (response)
                 deferred.resolve(response);
             else
@@ -115,11 +101,10 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
 
     dashboardService.accessLogin = accessLogin;
     dashboardService.registerUser = registerUser;
-    dashboardService.getCampanhas = getCampanhas;
-    dashboardService.getCidades = getCidades;
-    dashboardService.getDescontos = getDescontos;
-    dashboardService.getGrupos = getGrupos;
-    dashboardService.getProdutos = getProdutos;
+    dashboardService.getRegister = getRegister;
+    dashboardService.deleteRegister = deleteRegister;
+    dashboardService.storeRegister = storeRegister;
+    dashboardService.updateRegister = updateRegister;
 
     return dashboardService;
 

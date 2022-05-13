@@ -16,7 +16,9 @@ class CampaignsService
 
     public function get(): Collection
     {
-        return $this->entities->all();
+        return $this->entities
+            ->orderBy('id', 'desc')
+            ->get();
     }
 
     public function create(array $request): Campaigns

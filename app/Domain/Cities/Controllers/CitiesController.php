@@ -29,6 +29,15 @@ class CitiesController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required|numeric',
+                'group_id' => 'required|exists:groups,id',
+            ], [
+                'name.required' => 'Campo Preço é obrigatório',
+                'group_id.required' => "Selecionar o Grupo é obrigatório",
+                'group_id.exists' => "Grupo não existe em nosso banco dados",
+            ]);
+
             $this->service->create($request->all());
             return response()->json(['data' => "Cadastrado com sucesso!"], Response::HTTP_OK);
         
@@ -40,6 +49,15 @@ class CitiesController extends Controller
     public function update(Cities $city, Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required|numeric',
+                'group_id' => 'required|exists:groups,id',
+            ], [
+                'name.required' => 'Campo Preço é obrigatório',
+                'group_id.required' => "Selecionar o Grupo é obrigatório",
+                'group_id.exists' => "Grupo não existe em nosso banco dados",
+            ]);
+
             $this->service->update($city, $request->all());
             return response()->json(['data' => "Atualizado com sucesso!"], Response::HTTP_OK);
         

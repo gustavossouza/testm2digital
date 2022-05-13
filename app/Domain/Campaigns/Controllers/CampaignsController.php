@@ -28,6 +28,15 @@ class CampaignsController extends Controller
     public function store(Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required|numeric',
+                'product_id' => 'required|exists:products,id',
+            ], [
+                'name.required' => 'Campo Preço é obrigatório',
+                'product_id.required' => "Selecionar o Produto é obrigatório",
+                'product_id.exists' => "Produto não existe em nosso banco dados",
+            ]);
+
             $this->service->create($request->all());
             return response()->json(['data' => "Cadastrado com sucesso!"], Response::HTTP_OK);
         
@@ -39,6 +48,15 @@ class CampaignsController extends Controller
     public function update(Campaigns $campaign, Request $request): JsonResponse
     {
         try {
+            $request->validate([
+                'name' => 'required|numeric',
+                'product_id' => 'required|exists:products,id',
+            ], [
+                'name.required' => 'Campo Preço é obrigatório',
+                'product_id.required' => "Selecionar o Produto é obrigatório",
+                'product_id.exists' => "Produto não existe em nosso banco dados",
+            ]);
+
             $this->service->update($campaign, $request->all());
             return response()->json(['data' => "Atualizado com sucesso!"], Response::HTTP_OK);
         

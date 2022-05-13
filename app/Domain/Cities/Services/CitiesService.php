@@ -17,6 +17,7 @@ class CitiesService
     public function get(): Collection
     {
         return $this->entities->with('group')
+            ->orderBy('id', 'desc')
             ->get();
     }
 
