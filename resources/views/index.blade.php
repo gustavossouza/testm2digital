@@ -1,13 +1,7 @@
-﻿<!-- Author: Ranjithprabhu K
-     Date: 24 Dec 2015
-	 Author URL: http://ranjithprabhu.in
-	 Version: 1.0.0
---->
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-  <title>Angular Bootstrap Dashboard by Ranjithprabhu</title>
+  <title>Teste M2Digital</title>
   <meta name="description" content="Angular Bootstrap Dashboard"/>
   <meta name="keywords" content="Angular Bootstrap Dashboard"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -69,17 +63,11 @@
     <script src="app/modules/dashboard/dashboardApplication.js"></script>
     <script src="app/modules/dashboard/dashboardService.js"></script>
         <!-- Controllers -->
-        <script src="app/modules/dashboard/controllers/websites.js"></script>
-        <script src="app/modules/dashboard/controllers/about.js"></script>
-        <script src="app/modules/dashboard/controllers/achievements.js"></script>
-        <script src="app/modules/dashboard/controllers/contact.js"></script>
-        <script src="app/modules/dashboard/controllers/education.js"></script>
-        <script src="app/modules/dashboard/controllers/experience.js"></script>
-        <script src="app/modules/dashboard/controllers/gallery.js"></script>
-        <script src="app/modules/dashboard/controllers/home.js"></script>
-        <script src="app/modules/dashboard/controllers/portfolio.js"></script>
-        <script src="app/modules/dashboard/controllers/recent.js"></script>
-        <script src="app/modules/dashboard/controllers/skills.js"></script>
+        <script src="app/modules/dashboard/controllers/campanhas.js"></script>
+        <script src="app/modules/dashboard/controllers/cidades.js"></script>
+        <script src="app/modules/dashboard/controllers/descontos.js"></script>
+        <script src="app/modules/dashboard/controllers/grupos.js"></script>
+        <script src="app/modules/dashboard/controllers/produtos.js"></script>
     <div flash-message="5000"></div>
     <ui-view></ui-view>
     

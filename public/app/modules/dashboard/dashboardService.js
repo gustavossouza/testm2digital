@@ -43,8 +43,83 @@ dashboard.service('dashboardService', ['$http', '$q', 'Flash', 'apiService', fun
         return deferred.promise;
     };
 
+    var getCampanhas = function () {
+        var deferred = $q.defer();
+        apiService.get("campaigns").then(function (response) {
+            if (response)
+                deferred.resolve(response);
+            else
+                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+        },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+
+    var getCidades = function () {
+        var deferred = $q.defer();
+        apiService.get("cities").then(function (response) {
+            if (response)
+                deferred.resolve(response);
+            else
+                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+        },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+
+    var getDescontos = function () {
+        var deferred = $q.defer();
+        apiService.get("discounts").then(function (response) {
+            if (response)
+                deferred.resolve(response);
+            else
+                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+        },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+
+    var getGrupos = function () {
+        var deferred = $q.defer();
+        apiService.get("groups").then(function (response) {
+            if (response)
+                deferred.resolve(response);
+            else
+                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+        },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+
+    var getProdutos = function () {
+        var deferred = $q.defer();
+        apiService.get("products").then(function (response) {
+            if (response)
+                deferred.resolve(response);
+            else
+                deferred.reject("Something went wrong while processing your request. Please Contact Administrator.");
+        },
+            function (response) {
+                deferred.reject(response);
+            });
+        return deferred.promise;
+    }
+
     dashboardService.accessLogin = accessLogin;
     dashboardService.registerUser = registerUser;
+    dashboardService.getCampanhas = getCampanhas;
+    dashboardService.getCidades = getCidades;
+    dashboardService.getDescontos = getDescontos;
+    dashboardService.getGrupos = getGrupos;
+    dashboardService.getProdutos = getProdutos;
 
     return dashboardService;
 

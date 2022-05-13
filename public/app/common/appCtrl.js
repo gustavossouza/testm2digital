@@ -112,50 +112,31 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
     //Main menu items of the dashboard
     vm.menuItems = [
         {
-            title: "Dashboard",
+            title: "Grupos",
             icon: "dashboard",
-            state: "dashboard"
+            state: "grupos"
         },
         {
-            title: "Skills",
+            title: "Cidades",
             icon: "gears",
-            state: "skills"
+            state: "cidades"
         },
         {
-            title: "Education",
+            title: "Campanhas",
             icon: "graduation-cap",
-            state: "education"
+            state: "campanhas"
         },
         {
-            title: "Experience",
+            title: "Produtos",
             icon: "suitcase",
-            state: "experience"
+            state: "produtos"
         },
         {
-            title: "Recent Projects",
+            title: "Descontos",
             icon: "file-code-o",
-            state: "recent"
+            state: "descontos"
         },
-        {
-            title: "Websites",
-            icon: "globe",
-            state: "websites"
-        },
-        {
-            title: "Portfolio",
-            icon: "anchor",
-            state: "portfolio"
-        },
-        {
-            title: "About Me",
-            icon: "user-secret",
-            state: "about"
-        },
-        {
-            title: "Contact",
-            icon: "phone",
-            state: "contact"
-        }
+
     ];
 
     //set the theme selected

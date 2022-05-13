@@ -1,0 +1,45 @@
+﻿    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+           Descontos
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12" data-ng-repeat="data in vm.home.mainData">
+                <div class="info-box">
+                    <span class="info-box-icon bg-{{data.theme}}"><i class="fa fa-{{data.icon}}"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{data.title}}</span>
+                        <span class="info-box-number">{{data.value}}</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Nome Campanha</th>
+                              <th scope="col">Product Campanha</th>
+                              <th scope="col">Preço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="discount in discounts">
+                              <th scope="row">{{discount.id}}</th>
+                              <td>{{discount.campaign.name}}</td>
+                              <td>{{discount.product.name}}</td>
+                              <td>{{discount.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
