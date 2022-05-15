@@ -24,8 +24,8 @@
 
 ## Rotas
 
-- [https://localhost:8080/api/cities] - API Cidade
-- [https://localhost:8080/api/groups] - API Grupos
-- [https://localhost:8080/api/products] - API Produtos
-- [https://localhost:8080/api/campaigns] - API Campanhas
-- [https://localhost:8080/api/discounts] - API Descontos
+- [http://localhost:8080/api/cities] - API Cidade
+- [http://localhost:8080/api/groups] - API Grupos
+- [http://localhost:8080/api/products] - API Produtos
+- [http://localhost:8080/api/campaigns] - API Campanhas
+- [http://localhost:8080/api/discounts] - API Descontos

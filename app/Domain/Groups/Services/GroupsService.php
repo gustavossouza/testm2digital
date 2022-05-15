@@ -16,7 +16,7 @@ class GroupsService
 
     public function get(): Collection
     {
-        return $this->entities->with('campaign')
+        return $this->entities->with(['campaign','cities'])
             ->orderBy('id', 'desc')
             ->get();
     }

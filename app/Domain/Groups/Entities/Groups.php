@@ -3,10 +3,13 @@
 namespace App\Domain\Groups\Entities;
 
 use App\Domain\Campaigns\Entities\Campaigns;
+use App\Domain\Cities\Entities\Cities;
 use Database\Factories\GroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Groups extends Model
 {
@@ -28,6 +31,11 @@ class Groups extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function cities(): HasMany
+    {
+        return $this->hasMany(Cities::class, 'group_id');
+    }
 
     public function campaign(): BelongsTo
     {
