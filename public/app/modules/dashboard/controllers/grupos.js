@@ -19,14 +19,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     }
     $scope.getGrups();
 
-    dashboardService.getRegister('campaigns').then(function (response) {
-        $scope.campaigns = response.data;
+    dashboardService.getRegister('cities').then(function (response) {
+        $scope.cities = response.data;
     });   
 
     $scope.cadastro = function() {
         dashboardService.storeRegister('groups', {
             'name': $scope.name,
-            'campaign_id': $scope.campaign_id
+            'city_id': $scope.city_id
         }).then(function (response) {
             $("#myModal").modal('hide');
             $scope.getGrups();
@@ -49,7 +49,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         if (parameter == null) {
             $scope.idGroup = null;
             $scope.name = null;
-            $scope.campaign_id = null;
+            $scope.city_id = null;
             $scope.titleModal = "Cadastro";
             $("#myModal").modal('show');
         } else {
@@ -60,7 +60,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     $scope.atualizar = function(parameter) {
         $scope.idGroup = parameter.id;
         $scope.name = parameter.name;
-        $scope.campaign_id = parameter.campaign_id;
+        $scope.city_id = parameter.city_id;
         $scope.titleModal = "Atualizar";
 
         $("#myModal").modal('show');
@@ -71,7 +71,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         dashboardService.updateRegister('groups', {
             'id': $scope.idGroup,
             'name': $scope.name,
-            'campaign_id': $scope.campaign_id
+            'city_id': $scope.city_id
         }).then(function (response) {
             $("#myModal").modal('hide');
             $scope.getGrups();

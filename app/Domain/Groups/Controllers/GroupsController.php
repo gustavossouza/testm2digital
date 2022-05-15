@@ -30,11 +30,10 @@ class GroupsController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'campaign_id' => 'required|exists:campaigns,id',
+                'city_id' => 'required|array',
             ], [
                 'name.required' => 'Campo Nome é obrigatório',
-                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
-                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+                'city_id.required' => "Selecionar Cidades é obrigatório",
             ]);
 
             $this->service->create($request->all());
@@ -50,11 +49,10 @@ class GroupsController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'campaign_id' => 'required|exists:campaigns,id',
+                'city_id' => 'required|array',
             ], [
                 'name.required' => 'Campo Nome é obrigatório',
-                'campaign_id.required' => "Selecionar a Campanha é obrigatório",
-                'campaign_id.exists' => "Campanha não existe em nosso banco dados",
+                'city_id.required' => "Selecionar a Cidades é obrigatório",
             ]);
 
 

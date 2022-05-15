@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('group_id');
+            $table->integer('group_id')->nullable();
             $table->timestamps();
 
             $table->foreign('group_id')->references("id")->on('groups');

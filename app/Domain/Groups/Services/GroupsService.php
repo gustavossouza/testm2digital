@@ -2,6 +2,7 @@
 
 namespace App\Domain\Groups\Services;
 
+use App\Domain\Cities\Services\CitiesService;
 use App\Domain\Groups\Entities\Groups;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -26,6 +27,8 @@ class GroupsService
         $group = $this->entities;
         $group->fill($request);
         $group->save();
+
+        (new CitiesService())->likeCampaign($request['city_id'], $group->id);
 
         return $group;
     }

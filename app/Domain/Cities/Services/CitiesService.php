@@ -44,4 +44,13 @@ class CitiesService
         
         return $city;
     }
+
+    public function likeCampaign(array $citiesIds, int $groupId)
+    {
+        $cities = $this->entities->whereIn('id', $citiesIds)
+            ->update([
+                'group_id' => $groupId
+            ]);
+        return $cities;
+    }
 }

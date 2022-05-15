@@ -31,11 +31,8 @@ class CitiesController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'group_id' => 'required|exists:groups,id',
             ], [
                 'name.required' => 'Campo Preço é obrigatório',
-                'group_id.required' => "Selecionar o Grupo é obrigatório",
-                'group_id.exists' => "Grupo não existe em nosso banco dados",
             ]);
 
             $this->service->create($request->all());
