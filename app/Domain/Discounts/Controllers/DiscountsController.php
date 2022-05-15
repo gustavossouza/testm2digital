@@ -30,15 +30,12 @@ class DiscountsController extends Controller
         try {
             $request->validate([
                 'campaign_id' => 'required|exists:campaigns,id',
-                'product_id' => 'required|exists:products,id',
                 'price' => 'required|numeric'
             ], [
                 'price.required' => 'Campo Preço é obrigatório',
                 'price.numeric' => 'Campo Preço é valor monetário',
                 'campaign_id.required' => "Selecionar a Campanha é obrigatório",
                 'campaign_id.exists' => "Campanha não existe em nosso banco dados",
-                'product_id.required' => "Selecionar o Produto é obrigatório",
-                'product_id.exists' => "Produto não existe em nosso banco dados",
             ]);
 
 
@@ -55,15 +52,12 @@ class DiscountsController extends Controller
         try {
             $request->validate([
                 'campaign_id' => 'required|exists:campaigns,id',
-                'product_id' => 'required|exists:products,id',
                 'price' => 'required|numeric'
             ], [
-                'price.required' => 'Campo Preço é obrigatório',
-                'price.numeric' => 'Campo Preço é valor monetário',
+                'price.required' => 'Campo Valor é obrigatório',
+                'price.numeric' => 'Campo Valor é valor monetário',
                 'campaign_id.required' => "Selecionar a Campanha é obrigatório",
                 'campaign_id.exists' => "Campanha não existe em nosso banco dados",
-                'product_id.required' => "Selecionar o Produto é obrigatório",
-                'product_id.exists' => "Produto não existe em nosso banco dados",
             ]);
 
             $this->service->update($discount, $request->all());

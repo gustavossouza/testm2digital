@@ -25,6 +25,13 @@ class GroupsController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function indexWithoutCampaign(): JsonResponse
+    {
+        return response()->json([
+            'data' => $this->service->getWithoutCampaign()
+        ], Response::HTTP_OK);
+    }
+
     public function store(Request $request): JsonResponse
     {
         try {
@@ -67,6 +74,10 @@ class GroupsController extends Controller
     public function destroy(Groups $group): JsonResponse
     {
         try {
+            if ($group->campaign) {
+                throw new \Exception("Possuem uma campanha vinculado ao nesse grupo");
+            }
+
             $this->service->delete($group);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         

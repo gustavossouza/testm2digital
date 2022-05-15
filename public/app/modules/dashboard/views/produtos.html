@@ -36,7 +36,6 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Preço</th>
-                                <th scope="col">Nome Campanha</th>
                                 <th scope="col">Situação</th>
                                 <th scope="col">Ação</th>
                             </tr>
@@ -46,7 +45,6 @@
                                 <th scope="row">{{product.id}}</th>
                                 <td>{{product.name}}</td>
                                 <td>{{product.price}}</td>
-                                <td>{{product.campaign.name}}</td>
                                 <td>{{product.active ? 'Ativo' : 'Inativo'}}</td>
                                 <td>
                                   <a ng-click="openModal(product)"><i class="fa fa-refresh" aria-hidden="true"></i></a>

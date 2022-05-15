@@ -44,6 +44,11 @@ class ProductsService
         return $product;
     }
 
+    public function getAllById(array $productIds): Collection
+    {
+        return $this->entities->whereIn('id', $productIds)->get();
+    }
+
     public function likeCampaign(array $productIds, int $campaignId)
     {
         $products = $this->entities->whereIn('id', $productIds)

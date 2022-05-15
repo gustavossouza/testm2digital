@@ -112,9 +112,9 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
     //Main menu items of the dashboard
     vm.menuItems = [
         {
-            title: "Grupos",
-            icon: "dashboard",
-            state: "grupos"
+            title: "Produtos",
+            icon: "suitcase",
+            state: "produtos"
         },
         {
             title: "Cidades",
@@ -122,14 +122,14 @@ function ($rootScope, $scope, $state, $location, Flash,appSettings) {
             state: "cidades"
         },
         {
+            title: "Grupos",
+            icon: "dashboard",
+            state: "grupos"
+        },
+        {
             title: "Campanhas",
             icon: "graduation-cap",
             state: "campanhas"
-        },
-        {
-            title: "Produtos",
-            icon: "suitcase",
-            state: "produtos"
         },
         {
             title: "Descontos",

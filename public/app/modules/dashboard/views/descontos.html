@@ -35,7 +35,6 @@
                             <tr>
                               <th scope="col">ID</th>
                               <th scope="col">Nome Campanha</th>
-                              <th scope="col">Nome Produto</th>
                               <th scope="col">Preço</th>
                               <th scope="col">Ação</th>
                             </tr>
@@ -44,7 +43,6 @@
                             <tr data-ng-repeat="discount in discounts">
                                 <th scope="row">{{discount.id}}</th>
                                 <td>{{discount.campaign.name}}</td>
-                                <td>{{discount.product.name}}</td>
                                 <td>{{discount.price}}</td>
                                 <td>
                                   <a  ng-click="openModal(discount)"><i class="fa fa-refresh" aria-hidden="true"></i></a>
@@ -80,15 +78,7 @@
                       </select>
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Produto</label>
-                        <select ng-model="product_id" class="form-control">
-                          <option ng-selected="{{product.id == product_id}}" value="{{product.id}}" data-ng-repeat="product in products">
-                            {{product.name}}
-                          </option>
-                        </select>
-                      </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Preço</label>
+                        <label for="recipient-name" class="col-form-label">Valor</label>
                         <input ng-model="price" type="text" class="form-control" id="recipient-name">
                       </div>
                   </form>

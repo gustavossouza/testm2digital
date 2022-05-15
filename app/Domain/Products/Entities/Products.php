@@ -38,11 +38,6 @@ class Products extends Model
         return $this->belongsTo(Campaigns::class);
     }
 
-    public function discounts(): HasMany
-    {
-        return $this->hasMany(Discounts::class, 'product_id');
-    }
-
     protected static function newFactory()
     {
         return ProductFactory::new();

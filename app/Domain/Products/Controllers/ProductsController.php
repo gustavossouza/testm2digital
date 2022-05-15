@@ -68,7 +68,7 @@ class ProductsController extends Controller
     public function destroy(Products $product): JsonResponse
     {
         try {
-            if ($product->discounts->count()) {
+            if ($product->campaign) {
                 throw new \Exception("Esse produto possuem desconto cadastrado!");
             }
 

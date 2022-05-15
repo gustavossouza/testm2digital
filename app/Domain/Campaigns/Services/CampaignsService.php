@@ -29,7 +29,8 @@ class CampaignsService
         $campaign->fill($request);
         
         if ($campaign->save()) {
-            (new ProductsService())->likeCampaign($request['product_id'], $campaign->id);
+            $products = (new ProductsService())->getAllById($request['product_id']);
+            $campaign->products()->attach($products);
         }
 
         return $campaign;

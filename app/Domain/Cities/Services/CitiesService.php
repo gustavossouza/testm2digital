@@ -21,11 +21,12 @@ class CitiesService
             ->get();
     }
 
-    public function getGroupNull(): Collection
+    public function getGroupNull(int $id = null): Collection
     {
         return $this->entities->with('group')
             ->orderBy('id', 'desc')
             ->whereNull('group_id')
+            ->orWhere('group_id', $id)
             ->get();
     }
 
@@ -53,12 +54,23 @@ class CitiesService
         return $city;
     }
 
-    public function likeCampaign(array $citiesIds, int $groupId)
+    public function unlikeCampaignByGroupId(int $groupId): self
     {
-        $cities = $this->entities->whereIn('id', $citiesIds)
+        $this->entities->where('group_id', $groupId)
+            ->update([
+                'group_id' => null
+            ]);
+        return $this;
+    }
+
+    public function likeCampaign(array $citiesIds, int $groupId): self
+    {
+        $this->entities->whereIn('id', $citiesIds)
             ->update([
                 'group_id' => $groupId
             ]);
-        return $cities;
+        return $this;
     }
+
+    
 }

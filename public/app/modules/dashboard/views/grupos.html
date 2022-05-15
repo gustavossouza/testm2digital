@@ -35,7 +35,6 @@
                             <tr>
                               <th scope="col">ID</th>
                               <th scope="col">Nome</th>
-                              <th scope="col">Nome Campanha</th>
                               <th scope="col">Qtd Cidades</th>
                               <th scope="col">Ação</th>
                             </tr>
@@ -44,7 +43,6 @@
                             <tr data-ng-repeat="group in groups">
                                 <th scope="row">{{group.id}}</th>
                                 <td>{{group.name}}</td>
-                                <td>{{group.campaign.name}}</td>
                                 <td>{{group.cities.length}}</td>
                                 <td>
                                   <a ng-click="openModal(group)"><i class="fa fa-refresh" aria-hidden="true"></i></a>

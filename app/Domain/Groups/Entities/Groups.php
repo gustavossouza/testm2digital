@@ -7,9 +7,8 @@ use App\Domain\Cities\Entities\Cities;
 use Database\Factories\GroupFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Groups extends Model
 {
@@ -22,7 +21,6 @@ class Groups extends Model
     protected $fillable = [
         'id',
         'name',
-        'campaign_id',
         'created_at',
         'updated_at',
     ];
@@ -37,9 +35,9 @@ class Groups extends Model
         return $this->hasMany(Cities::class, 'group_id');
     }
 
-    public function campaign(): BelongsTo
+    public function campaign(): HasOne
     {
-        return $this->belongsTo(Campaigns::class);
+        return $this->hasOne(Campaigns::class, 'group_id');
     }
 
     protected static function newFactory()

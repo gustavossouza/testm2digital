@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Campaigns extends Model
 {
@@ -39,9 +41,9 @@ class Campaigns extends Model
         return $this->belongsTo(Groups::class);
     }
     
-    public function products(): HasMany
+    public function products(): MorphToMany
     {
-        return $this->hasMany(Products::class, 'campaign_id');
+        return $this->morphToMany(Products::class, 'product_campaign', 'product_campaign', 'campaign_id', 'product_id');
     }
 
     public function discounts(): BelongsToMany

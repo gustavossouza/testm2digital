@@ -24,7 +24,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         $scope.products = response.data;
     });
 
-    dashboardService.getRegister('groups').then(function (response) {
+    dashboardService.getRegister('groups/withoutcampaign').then(function (response) {
         $scope.groups = response.data;
     });
 

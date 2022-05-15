@@ -18,10 +18,14 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         });
     }
     $scope.getGrups();
-
-    dashboardService.getRegister('cities/getByGroupNull').then(function (response) {
-        $scope.cities = response.data;
-    });   
+    $scope.getByGroupNull = function(id = null) {
+        rotas = id ? 'cities/getByGroupNull'+id : 'cities/getByGroupNull';
+        dashboardService.getRegister(rotas).then(function (response) {
+            $scope.cities = response.data;
+        });
+    }
+    $scope.getByGroupNull();
+    
 
     $scope.cadastro = function() {
         dashboardService.storeRegister('groups', {
@@ -30,6 +34,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         }).then(function (response) {
             $("#myModal").modal('hide');
             $scope.getGrups();
+            $scope.getByGroupNull();
         }, function(response) {
             $.amaran({
                 'theme': 'colorful',
@@ -53,6 +58,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             $scope.titleModal = "Cadastro";
             $("#myModal").modal('show');
         } else {
+            $scope.getByGroupNull('/' + parameter.id);
             $scope.atualizar(parameter)
         }
     }
@@ -67,7 +73,6 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     }
 
     $scope.modalAtualizar = function() {
-
         dashboardService.updateRegister('groups', {
             'id': $scope.idGroup,
             'name': $scope.name,
@@ -75,6 +80,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         }).then(function (response) {
             $("#myModal").modal('hide');
             $scope.getGrups();
+            $scope.getByGroupNull();
         }, function(response) {
             $.amaran({
                 'theme': 'colorful',

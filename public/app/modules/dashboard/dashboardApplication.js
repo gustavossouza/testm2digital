@@ -14,13 +14,13 @@ var dashboard = angular.module('dashboard', ['ui.router', 'ngAnimate','ngMateria
 
 dashboard.config(["$stateProvider", function ($stateProvider) {
 
-    $stateProvider.state('app.grupos', {
-        url: '/grupos',
-        templateUrl: 'app/modules/dashboard/views/grupos.html',
-        controller: 'GrupoController',
+    $stateProvider.state('app.produtos', {
+        url: '/produtos',
+        templateUrl: 'app/modules/dashboard/views/produtos.html',
+        controller: 'ProdutoController',
         controllerAs: 'vm',
         data: {
-            pageTitle: 'Grupos'
+            pageTitle: 'Produtos'
         }
     });
 
@@ -34,6 +34,16 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         }
     });
 
+    $stateProvider.state('app.grupos', {
+        url: '/grupos',
+        templateUrl: 'app/modules/dashboard/views/grupos.html',
+        controller: 'GrupoController',
+        controllerAs: 'vm',
+        data: {
+            pageTitle: 'Grupos'
+        }
+    });
+
     $stateProvider.state('app.campanhas', {
         url: '/campanhas',
         templateUrl: 'app/modules/dashboard/views/campanhas.html',
@@ -41,16 +51,6 @@ dashboard.config(["$stateProvider", function ($stateProvider) {
         controllerAs: 'vm',
         data: {
             pageTitle: 'Campanhas'
-        }
-    });
-
-    $stateProvider.state('app.produtos', {
-        url: '/produtos',
-        templateUrl: 'app/modules/dashboard/views/produtos.html',
-        controller: 'ProdutoController',
-        controllerAs: 'vm',
-        data: {
-            pageTitle: 'Produtos'
         }
     });
 

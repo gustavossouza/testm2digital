@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('product_campaign', function (Blueprint $table) {
             $table->id();
             $table->integer('campaign_id');
-            $table->float('price');
+            $table->integer('product_id');
+            $table->string('product_campaign_type');
             $table->timestamps();
 
             $table->foreign('campaign_id')->references("id")->on('campaigns');
+            $table->foreign('product_id')->references("id")->on('products');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discounts');
+        Schema::dropIfExists('product_campaign');
     }
 };

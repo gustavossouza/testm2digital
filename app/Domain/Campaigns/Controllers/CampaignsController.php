@@ -68,10 +68,6 @@ class CampaignsController extends Controller
     public function destroy(Campaigns $campaign): JsonResponse
     {
         try {
-            if ($campaign->group) {
-                throw new \Exception("Existem algum grupo vinculado ao nessa campanha");
-            }
-
             $this->service->delete($campaign);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         

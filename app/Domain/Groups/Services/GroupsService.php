@@ -22,6 +22,14 @@ class GroupsService
             ->get();
     }
 
+    public function getWithoutCampaign(): Collection
+    {
+        return $this->entities
+            ->doesntHave('campaign')
+            ->orderBy('id', 'desc')
+            ->get();
+    }
+
     public function create(array $request): Groups
     {
         $group = $this->entities;
@@ -37,6 +45,9 @@ class GroupsService
     {
         $group->fill($request);
         $group->update();
+
+        (new CitiesService())->unlikeCampaignByGroupId($group->id)
+            ->likeCampaign($request['city_id'], $group->id);
 
         return $group;
     }

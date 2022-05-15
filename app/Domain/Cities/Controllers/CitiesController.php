@@ -26,10 +26,10 @@ class CitiesController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function indexGroupNull(): JsonResponse
+    public function indexGroupNull(int $id = null): JsonResponse
     {
         return response()->json([
-            'data' => $this->service->getGroupNull()
+            'data' => $this->service->getGroupNull($id)
         ], Response::HTTP_OK);
     }
 
@@ -55,11 +55,8 @@ class CitiesController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'group_id' => 'required|exists:groups,id',
             ], [
                 'name.required' => 'Campo Preço é obrigatório',
-                'group_id.required' => "Selecionar o Grupo é obrigatório",
-                'group_id.exists' => "Grupo não existe em nosso banco dados",
             ]);
 
             $this->service->update($city, $request->all());
@@ -73,6 +70,10 @@ class CitiesController extends Controller
     public function destroy(Cities $city): JsonResponse
     {
         try {
+            if ($city->group) {
+                throw new \Exception("Essa cidade possuem um grupo de cidade");
+            }
+
             $this->service->delete($city);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         
