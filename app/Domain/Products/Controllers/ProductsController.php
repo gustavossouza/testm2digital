@@ -68,6 +68,10 @@ class ProductsController extends Controller
     public function destroy(Products $product): JsonResponse
     {
         try {
+            if ($product->discounts->count()) {
+                throw new \Exception("Esse produto possuem desconto cadastrado!");
+            }
+
             $this->service->delete($product);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         

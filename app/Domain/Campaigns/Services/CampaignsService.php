@@ -45,13 +45,10 @@ class CampaignsService
 
     public function delete(Campaigns $campaign): Campaigns
     {
-        $unlikeProducts = $campaign->products()->update([
+        $campaign->products()->update([
             'campaign_id' => null
         ]);
-
-        if ($unlikeProducts) {
-            $campaign->delete();
-        }
+        $campaign->delete();
         
         return $campaign;
     }

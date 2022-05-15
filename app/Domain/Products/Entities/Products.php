@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Products extends Model
 {
@@ -37,9 +38,9 @@ class Products extends Model
         return $this->belongsTo(Campaigns::class);
     }
 
-    public function discounts(): BelongsToMany
+    public function discounts(): HasMany
     {
-        return $this->belongsToMany(Discounts::class);
+        return $this->hasMany(Discounts::class, 'product_id');
     }
 
     protected static function newFactory()
