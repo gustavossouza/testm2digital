@@ -7,6 +7,7 @@ use App\Domain\Products\Entities\Products;
 use Database\Factories\CampaignFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -23,6 +24,7 @@ class Campaigns extends Model
         'id',
         'name',
         'active',
+        'group_id',
         'created_at',
         'updated_at',
     ];
@@ -32,9 +34,9 @@ class Campaigns extends Model
         'updated_at',
     ];
 
-    public function group(): HasOne
+    public function group(): BelongsTo
     {
-        return $this->hasOne(Groups::class, 'campaign_id');
+        return $this->belongsTo(Groups::class);
     }
     
     public function products(): HasMany

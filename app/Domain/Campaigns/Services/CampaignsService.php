@@ -18,7 +18,7 @@ class CampaignsService
     public function get(): Collection
     {
         return $this->entities
-            ->with('products')
+            ->with(['products', 'group'])
             ->orderBy('id', 'desc')
             ->get();
     }

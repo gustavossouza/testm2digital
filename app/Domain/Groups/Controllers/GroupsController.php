@@ -67,10 +67,6 @@ class GroupsController extends Controller
     public function destroy(Groups $group): JsonResponse
     {
         try {
-            if ($group->cities->count()) {
-                throw new \Exception("Existe alguma cidade está vinculado ao nesse grupo!");
-            }
-
             $this->service->delete($group);
             return response()->json(['data' => "Exclusão com sucesso!"], Response::HTTP_OK);
         

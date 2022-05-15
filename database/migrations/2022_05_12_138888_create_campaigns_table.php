@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('active')->default(true);
+            $table->integer('group_id');
             $table->timestamps();
+
+            $table->foreign('group_id')->references("id")->on('groups');
         });
     }
 

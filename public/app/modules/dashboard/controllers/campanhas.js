@@ -24,10 +24,15 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         $scope.products = response.data;
     });
 
+    dashboardService.getRegister('groups').then(function (response) {
+        $scope.groups = response.data;
+    });
+
     $scope.cadastro = function() {
         dashboardService.storeRegister('campaigns', {
             'name': $scope.name,
-            'product_id': $scope.product_id
+            'product_id': $scope.product_id,
+            'group_id': $scope.group_id
         }).then(function (response) {
             $("#myModal").modal('hide');
             $scope.getCampaigns();
@@ -50,6 +55,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         if (parameter == null) {
             $scope.idCampaign = null;
             $scope.name = null;
+            $scope.group_id = null;
             $scope.product_id = null;
             $scope.titleModal = "Cadastro";
             $("#myModal").modal('show');
@@ -62,6 +68,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         $scope.idCampaign = parameter.id;
         $scope.name = parameter.name;
         $scope.product_id = parameter.product_id;
+        $scope.group_id = parameter.group_id;
         $scope.titleModal = "Atualizar";
 
         $("#myModal").modal('show');
@@ -72,6 +79,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
         dashboardService.updateRegister('campaigns', {
             'id': $scope.idCampaign,
             'name': $scope.name,
+            'group_id': $scope.group_id,
             'product_id': $scope.product_id
         }).then(function (response) {
             $("#myModal").modal('hide');

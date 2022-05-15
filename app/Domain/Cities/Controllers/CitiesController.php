@@ -26,6 +26,13 @@ class CitiesController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function indexGroupNull(): JsonResponse
+    {
+        return response()->json([
+            'data' => $this->service->getGroupNull()
+        ], Response::HTTP_OK);
+    }
+
     public function store(Request $request): JsonResponse
     {
         try {

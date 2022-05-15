@@ -19,7 +19,7 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
     }
     $scope.getGrups();
 
-    dashboardService.getRegister('cities').then(function (response) {
+    dashboardService.getRegister('cities/getByGroupNull').then(function (response) {
         $scope.cities = response.data;
     });   
 

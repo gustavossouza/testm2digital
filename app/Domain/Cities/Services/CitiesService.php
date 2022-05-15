@@ -21,6 +21,14 @@ class CitiesService
             ->get();
     }
 
+    public function getGroupNull(): Collection
+    {
+        return $this->entities->with('group')
+            ->orderBy('id', 'desc')
+            ->whereNull('group_id')
+            ->get();
+    }
+
     public function create(array $request): Cities
     {
         $city = $this->entities;

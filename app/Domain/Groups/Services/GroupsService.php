@@ -43,6 +43,9 @@ class GroupsService
 
     public function delete(Groups $group): Groups
     {
+        $group->cities()->update([
+            'group_id' => null
+        ]);
         $group->delete();
         
         return $group;
