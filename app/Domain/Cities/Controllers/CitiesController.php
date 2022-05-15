@@ -30,7 +30,7 @@ class CitiesController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|numeric',
+                'name' => 'required',
                 'group_id' => 'required|exists:groups,id',
             ], [
                 'name.required' => 'Campo Preço é obrigatório',
@@ -50,7 +50,7 @@ class CitiesController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|numeric',
+                'name' => 'required',
                 'group_id' => 'required|exists:groups,id',
             ], [
                 'name.required' => 'Campo Preço é obrigatório',

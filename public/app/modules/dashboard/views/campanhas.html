@@ -44,7 +44,7 @@
                             <tr data-ng-repeat="campaign in campaigns">
                                 <th scope="row">{{campaign.id}}</th>
                                 <td>{{campaign.name}}</td>
-                                <td>0</td>
+                                <td>{{campaign.products.length}}</td>
                                 <td>{{campaign.active ? 'Ativo' : 'Inativo'}}</td>
                                 <td>
                                   <a  ng-click="openModal(campaign)"><i class="fa fa-refresh" aria-hidden="true"></i></a>
@@ -78,7 +78,7 @@
                     <div class="form-group">
                       <label for="message-text" class="col-form-label">Produto</label>
                       <select ng-model="product_id" class="form-control" multiple>
-                        <option ng-selected="{{product.id == product_id}}" value="{{products.id}}" data-ng-repeat="product in products">
+                        <option ng-selected="{{product.id == product_id}}" value="{{product.id}}" data-ng-repeat="product in products">
                           {{product.name}}
                         </option>
                       </select>

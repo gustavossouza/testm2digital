@@ -2,6 +2,7 @@
 
 namespace App\Domain\Products\Services;
 
+use App\Domain\Campaigns\Entities\Campaigns;
 use App\Domain\Products\Entities\Products;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -16,7 +17,7 @@ class ProductsService
 
     public function get(): Collection
     {
-        return $this->entities->orderBy('id', 'desc')->get();
+        return $this->entities->orderBy('id', 'desc')->with('campaign')->get();
     }
 
     public function create(array $request): Products
@@ -41,5 +42,14 @@ class ProductsService
         $product->delete();
         
         return $product;
+    }
+
+    public function likeCampaign(array $productIds, int $campaignId)
+    {
+        $products = $this->entities->whereIn('id', $productIds)
+            ->update([
+                'campaign_id' => $campaignId
+            ]);
+        return $products;
     }
 }

@@ -29,12 +29,12 @@ class CampaignsController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|numeric',
-                'product_id' => 'required|exists:products,id',
+                'name' => 'required',
+                'product_id' => 'required|array',
             ], [
-                'name.required' => 'Campo Preço é obrigatório',
+                'name.required' => 'Campo Nome é obrigatório',
                 'product_id.required' => "Selecionar o Produto é obrigatório",
-                'product_id.exists' => "Produto não existe em nosso banco dados",
+                'product_id.array' => "Formato do Produto é obrigatorio em array",
             ]);
 
             $this->service->create($request->all());
@@ -49,10 +49,10 @@ class CampaignsController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|numeric',
+                'name' => 'required',
                 'product_id' => 'required|exists:products,id',
             ], [
-                'name.required' => 'Campo Preço é obrigatório',
+                'name.required' => 'Campo Nome é obrigatório',
                 'product_id.required' => "Selecionar o Produto é obrigatório",
                 'product_id.exists' => "Produto não existe em nosso banco dados",
             ]);

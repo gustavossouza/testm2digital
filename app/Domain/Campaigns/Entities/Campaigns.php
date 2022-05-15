@@ -2,10 +2,12 @@
 
 namespace App\Domain\Campaigns\Entities;
 
+use App\Domain\Products\Entities\Products;
 use Database\Factories\CampaignFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Campaigns extends Model
 {
@@ -27,6 +29,11 @@ class Campaigns extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Products::class, 'campaign_id');
+    }
 
     public function discounts(): BelongsToMany
     {

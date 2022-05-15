@@ -3,6 +3,7 @@
 namespace App\Domain\Campaigns\Services;
 
 use App\Domain\Campaigns\Entities\Campaigns;
+use App\Domain\Products\Services\ProductsService;
 use Illuminate\Database\Eloquent\Collection;
 
 class CampaignsService
@@ -17,31 +18,41 @@ class CampaignsService
     public function get(): Collection
     {
         return $this->entities
+            ->with('products')
             ->orderBy('id', 'desc')
             ->get();
     }
 
     public function create(array $request): Campaigns
     {
-        $group = $this->entities;
-        $group->fill($request);
-        $group->save();
-
-        return $group;
-    }
-
-    public function update(Campaigns $group, array $request): Campaigns
-    {
-        $group->fill($request);
-        $group->update();
-
-        return $group;
-    }
-
-    public function delete(Campaigns $group): Campaigns
-    {
-        $group->delete();
+        $campaign = $this->entities;
+        $campaign->fill($request);
         
-        return $group;
+        if ($campaign->save()) {
+            (new ProductsService())->likeCampaign($request['product_id'], $campaign->id);
+        }
+
+        return $campaign;
+    }
+
+    public function update(Campaigns $campaign, array $request): Campaigns
+    {
+        $campaign->fill($request);
+        $campaign->update();
+
+        return $campaign;
+    }
+
+    public function delete(Campaigns $campaign): Campaigns
+    {
+        $unlikeProducts = $campaign->products()->update([
+            'campaign_id' => null
+        ]);
+
+        if ($unlikeProducts) {
+            $campaign->delete();
+        }
+        
+        return $campaign;
     }
 }

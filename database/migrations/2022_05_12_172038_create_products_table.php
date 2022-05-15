@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->boolean('active')->default(true);
+            $table->integer('campaign_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('campaign_id')->references("id")->on('campaigns');
         });
     }
 
