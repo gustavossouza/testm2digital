@@ -49,9 +49,9 @@ function ($rootScope, $scope, $state, $location, dashboardService, Flash) {
             $scope.price = null;
             $scope.titleModal = "Cadastro";
             $("#myModal").modal('show');
+        } else {
+            $scope.atualizar(parameter)
         }
-
-        $scope.atualizar(parameter)
     }
 
     $scope.atualizar = function(parameter) {
